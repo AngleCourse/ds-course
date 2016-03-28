@@ -22,8 +22,8 @@ JAVAFILES = */*.java */*/*.java
 # - ALLDOCDIR is the same for the docs-all target.
 # - DOCLINK is the URL to Javadoc for the standard Java class library.
 
-DOCDIR = javadoc
-ALLDOCDIR = javadoc-all
+DOCDIR = ../../doc/dfs/javadoc
+ALLDOCDIR = ../../doc/dfs/javadoc-all
 DOCLINK = http://download.oracle.com/javase/6/docs/api
 
 # Define the variable CPSEPARATOR, the classpath separator character. This is
@@ -77,6 +77,7 @@ docs-all :
 	javadoc -link $(DOCLINK) -private -sourcepath $(UNITCLASSPATH) \
 		-d $(ALLDOCDIR) $(DFSPACKAGES) test conformance conformance.rmi \
 		conformance.common conformance.storage conformance.naming unit build
+	cd ../../doc && git add -A && git commit -m "Update docs" && git push
 
 # Create a source code archive.
 .PHONY : archive
